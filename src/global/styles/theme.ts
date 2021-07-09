@@ -11,7 +11,7 @@ export const theme = {
 
         overlay: 'rgb(0,0,0,0.7)',
         highlight: '#ABB1CC',
-        heading: '#000000',
+        heading: '#363636',
         headings: '#FFF',
         primary: '#495BCC',
         line: '#243189'

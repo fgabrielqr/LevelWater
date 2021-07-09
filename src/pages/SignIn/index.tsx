@@ -15,8 +15,8 @@ export function SignIn() {
             <View style={styles.content}>
                 <Text style={styles.title}>
                     Faça o login para {`\n`}
-                    ver o nível da sua {`\n`}
-                    caixa d'água
+                    verificar o nível {`\n`}
+                    da caixa d'água
                 </Text>
 
                 <ButtonIcon />
