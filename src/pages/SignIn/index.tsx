@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { Text, View, Image } from 'react-native';
-
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { ButtonIcon } from '../../components/ButtonIcon';
 import { styles } from './styles';
 import CaixaImg from '../../assets/caixa.png';
 
 export function SignIn() {
-    const [text, setText] = useState('');
-
     return (
         <View style={styles.container}>
             <Image source={CaixaImg} style={styles.image} />
@@ -18,8 +15,7 @@ export function SignIn() {
                     verificar o nível {`\n`}
                     da caixa d'água
                 </Text>
-
-                <ButtonIcon />
+                    <ButtonIcon  />
             </View>
         </View>
     );
