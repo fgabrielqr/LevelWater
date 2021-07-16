@@ -2,9 +2,16 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Avatar } from "../Avatar";
 import { styles } from "./styles";
+import { useAuth } from "../../contexts/auth";
 
 
 export function Profile() {
+    const { user, signOut } = useAuth();
+
+    function handleSignOut() {
+        signOut();
+    }
+
     return (
         <View style={styles.container}>
 
@@ -17,7 +24,7 @@ export function Profile() {
                     </Text>
 
                     <Text style={styles.username}>
-                        Felipe
+                        {user?.name}
                     </Text>
                 </View>
 

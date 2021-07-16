@@ -15,7 +15,7 @@ export function SignIn() {
                     verificar o nível {`\n`}
                     da caixa d'água
                 </Text>
-                    <ButtonIcon  />
+                <ButtonIcon />
             </View>
         </View>
     );
