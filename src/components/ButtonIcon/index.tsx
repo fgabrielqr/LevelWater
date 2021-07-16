@@ -10,13 +10,7 @@ import { useAuth } from '../../contexts/auth';
 WebBrowser.maybeCompleteAuthSession();
 
 export function ButtonIcon() {
-    const { signed } = useAuth();
-
-    async function handleSignIn() {
-        const response = await signIn();
-
-        console.log(response);
-    }
+    const { signed, signIn } = useAuth();
 
     const [request, response, promptAsync] = Google.useAuthRequest({
         expoClientId: '590626881314-kf4ac5rc2nqlh3p1cfp4f6baca1imu9j.apps.googleusercontent.com',
@@ -32,7 +26,7 @@ export function ButtonIcon() {
                 if (authentication) {
                     const apiResponse = await fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + authentication.accessToken)
                     const userData = await apiResponse.json()
-                    console.log(userData)
+                    signIn(userData)
                 }
             }
         } catch (error) {

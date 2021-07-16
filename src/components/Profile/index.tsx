@@ -15,7 +15,7 @@ export function Profile() {
     return (
         <View style={styles.container}>
 
-            <Avatar urlImage="https://github.com/fgabrielqr.png" />
+            <Avatar urlImage={user?.picture as string} />
 
             <View>
                 <View style={styles.user}>
@@ -24,12 +24,13 @@ export function Profile() {
                     </Text>
 
                     <Text style={styles.username}>
-                        {user?.name}
+                        {user?.given_name}
+
                     </Text>
                 </View>
 
                 <Text style={styles.message}>
-                    Hoje é dia de economizar água
+                    Hoje é dia de economizar água!
                 </Text>
             </View>
         </View>

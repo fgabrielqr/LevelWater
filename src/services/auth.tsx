@@ -11,7 +11,7 @@ export function signIn(): Promise<Response> {
         resolve({
             token: 'asgasfvr54asdfarvrgrr',
             user: {
-                name: 'Felipe',
+                name: 'Gabriel',
                 email: 'felipe@felipe.com'
             },
         });

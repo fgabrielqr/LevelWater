@@ -4,14 +4,15 @@ import api from "../services/api";
 import * as auth from '../services/auth';
 
 interface User {
-    name: string;
+    given_name: string;
+    picture: string;
     email: string;
 }
 
 interface AuthContextData {
     signed: boolean;
     user: User | null;
-    signIn(): Promise<void>;
+    signIn(user: any): Promise<void>;
     signOut(): void;
 }
 
@@ -22,30 +23,26 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     useEffect(() => {
         async function loadStoragedData() {
-            const storageUser = await SecureStore.getItemAsync('@RNAuth:user');
-            const storageToken = await SecureStore.getItemAsync('@RNAuth:token');
+            const storageUser = await SecureStore.getItemAsync('levelwater_user');
+            const storageToken = await SecureStore.getItemAsync('levelwater_token');
 
             if (storageUser && storageToken) {
                 api.defaults.headers.Authorization = `Bearer ${storageToken}`;
                 setUser(JSON.parse(storageUser))
             }
         }
+        loadStoragedData();
     }, []);
 
-    async function signIn() {
-        const response = await auth.signIn();
-
-        setUser(response.user);
-
-        api.defaults.headers.Authorization = `Bearer ${response.token}`;
-
-        await SecureStore.setItemAsync('@RNAuth:user', JSON.stringify(response.user));
-        await SecureStore.setItemAsync('@RNAuth:token', response.token);
+    async function signIn(user: any) {
+        setUser(user);
+        api.defaults.headers.Authorization = `Bearer ${user.Token}`;
+        await SecureStore.setItemAsync('levelwater_user', JSON.stringify(user));
     }
 
     function signOut() {
-        SecureStore.deleteItemAsync('@RNAuth:user').then(() => {
-            SecureStore.deleteItemAsync('@RNAuth:token').then(() => {
+        SecureStore.deleteItemAsync('levelwater_user').then(() => {
+            SecureStore.deleteItemAsync('levelwater_token').then(() => {
                 setUser(null);
             });
         });
