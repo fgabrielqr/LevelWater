@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Text, View, Image } from 'react-native';
 import { ButtonIcon } from '../../components/ButtonIcon';
 import { styles } from './styles';
 import CaixaImg from '../../assets/caixa.png';

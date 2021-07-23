@@ -4,19 +4,17 @@ import * as Google from 'expo-auth-session/providers/google';
 import GoogleImg from '../../assets/g.png';
 import { styles } from './styles';
 import * as WebBrowser from 'expo-web-browser';
-import { signIn } from '../../services/auth';
 import { useAuth } from '../../contexts/auth';
 
 WebBrowser.maybeCompleteAuthSession();
 
 export function ButtonIcon() {
-    const { signed, signIn } = useAuth();
+    const { signIn } = useAuth();
 
-    const [request, response, promptAsync] = Google.useAuthRequest({
+    const [, response, promptAsync] = Google.useAuthRequest({
         expoClientId: '590626881314-kf4ac5rc2nqlh3p1cfp4f6baca1imu9j.apps.googleusercontent.com',
+        androidClientId: '590626881314-nqp8krl3dioj9v3alc0s3ub73187d555.apps.googleusercontent.com',
         // iosClientId: '590626881314-6j4r7u62faefsg63e4sle0oomjqq8uk5.apps.googleusercontent.com',
-        // androidClientId: '590626881314-nqp8krl3dioj9v3alc0s3ub73187d555.apps.googleusercontent.com',
-
     });
 
     async function pegarDadosDoUsuario() {

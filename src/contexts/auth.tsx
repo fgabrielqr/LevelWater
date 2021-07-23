@@ -2,7 +2,6 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 import * as SecureStore from 'expo-secure-store';
 import api from "../services/api";
 import { View, ActivityIndicator } from 'react-native';
-import * as auth from '../services/auth';
 
 interface User {
     given_name: string;
@@ -22,25 +21,24 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
-
+    console.log(user);
     useEffect(() => {
         async function loadStoragedData() {
             const storageUser = await SecureStore.getItemAsync('levelwater_user');
-            const storageToken = await SecureStore.getItemAsync('levelwater_token');
-
             await new Promise((resolve) => setTimeout(resolve, 2000));
- 
-            if (storageUser && storageToken) {
-                api.defaults.headers.Authorization = `Bearer ${storageToken}`;
+
+            if (storageUser) {
                 setUser(JSON.parse(storageUser));
-                setLoading(false);
+
             }
+            setLoading(false);
         }
         loadStoragedData();
     }, []);
 
     async function signIn(user: any) {
         setUser(user);
+
         api.defaults.headers.Authorization = `Bearer ${user.Token}`;
         await SecureStore.setItemAsync('levelwater_user', JSON.stringify(user));
     }
@@ -49,16 +47,17 @@ export const AuthProvider: React.FC = ({ children }) => {
         SecureStore.deleteItemAsync('levelwater_user').then(() => {
             SecureStore.deleteItemAsync('levelwater_token').then(() => {
                 setUser(null);
+
             });
         });
     }
 
-    if(loading){
-        return(
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    if (loading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <ActivityIndicator size="large" color="#666" />
             </View>
-        )
+        );
     }
 
     return (

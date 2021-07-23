@@ -4,13 +4,8 @@ import { Avatar } from "../Avatar";
 import { styles } from "./styles";
 import { useAuth } from "../../contexts/auth";
 
-
 export function Profile() {
-    const { user, signOut } = useAuth();
-
-    function handleSignOut() {
-        signOut();
-    }
+    const { user } = useAuth();
 
     return (
         <View style={styles.container}>
