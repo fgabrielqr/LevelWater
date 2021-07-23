@@ -8,6 +8,7 @@ export const theme = {
         secondary50: '#B2CAED',
         secondary40: '#1D2766',
         secondary30: '#FFF',
+        secondary20: '#495BCC',
 
         overlay: 'rgb(0,0,0,0.7)',
         highlight: '#ABB1CC',
