@@ -26,7 +26,7 @@ export function Home() {
                     shadowColor="#999"
                     bgColor="#DFE9F5"
                 >
-                    <Text style={{ fontSize: 50 }}>{'100%'}</Text>
+                    <Text style={{ fontSize: 50, color: '#363636' }}>{'100%'}</Text>
                 </ProgressCircle>
             </View>
         </View>
