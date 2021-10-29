@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import * as SecureStore from 'expo-secure-store';
-import api from "../services/api";
 import { View, ActivityIndicator } from 'react-native';
 
 interface User {
@@ -21,7 +20,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
-    console.log(user);
+    
     useEffect(() => {
         async function loadStoragedData() {
             const storageUser = await SecureStore.getItemAsync('levelwater_user');
@@ -38,8 +37,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     async function signIn(user: any) {
         setUser(user);
-
-        api.defaults.headers.Authorization = `Bearer ${user.Token}`;
+        
+        //api.defaults.headers.Authorization = `Bearer ${user.Token}`;
         await SecureStore.setItemAsync('levelwater_user', JSON.stringify(user));
     }
 
