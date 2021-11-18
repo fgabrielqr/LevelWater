@@ -4,14 +4,17 @@ import { styles } from "./styles";
 import { theme } from "../../global/styles/theme";
 
 type Props = {
-    children: ReactNode;
-}
+  children: ReactNode;
+};
 
 export function Background({ children }: Props) {
-    const { secondary30, secondary50 } = theme.color;
-    return (
-        <LinearGradient style={styles.container} colors={[secondary30, secondary50]}>
-            {children}
-        </LinearGradient>
-    )
+  const { secondary30, secondary50 } = theme.color;
+  return (
+    <LinearGradient
+      style={styles.container}
+      colors={[secondary30, secondary50]}
+    >
+      {children}
+    </LinearGradient>
+  );
 }
