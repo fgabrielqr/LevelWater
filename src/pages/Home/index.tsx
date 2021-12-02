@@ -11,6 +11,7 @@ import api from "../../services/api-mqtt";
 export function Home() {
   const [progress, setProgress] = useState(0);
   const [date, setDate] = useState<Date | null>(null);
+  const [description, setDescription] = useState();
 
   useEffect(() => {
     searchData();
@@ -23,6 +24,7 @@ export function Home() {
       .get("/")
       .then(({ data }) => {
         setProgress(data.last_level);
+        setDescription(data.last_description);
         setDate(data.date);
       })
       .catch((err) => {
@@ -37,7 +39,7 @@ export function Home() {
         <ButtonLogout />
       </View>
       <View style={styles.center}>
-        <Text style={styles.texto}>Nível do reservatório</Text>
+        <Text style={styles.texto}>{description}</Text>
       </View>
       <View style={styles.progress}>
         <ProgressCircle
